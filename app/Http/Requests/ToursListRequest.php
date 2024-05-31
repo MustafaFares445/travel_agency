@@ -23,10 +23,10 @@ class ToursListRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'priceForm' => 'numeric',
-            'priceTo' => 'numeric',
-            'dateFrom' => 'date',
-            'dateTo' => 'date',
+            'priceForm' => ['required' , 'numeric' , 'min:0'],
+            'priceTo' => ['required' , 'numeric' , 'min:0'],
+            'dateFrom' => ['date' , 'date_format:m/d/Y'],
+            'dateTo' => ['date' , 'date_format:m/d/Y'],
             'sortBy' => Rule::in(['price']),
             'sortOrder' => Rule::in(['asc' , 'desc'])
         ];

@@ -24,12 +24,12 @@ class TravelRequest extends FormRequest
         return [
             'isPublic' => ['required' , 'boolean'],
             'name' => ['required' , 'unique:travels'],
-            'description' => ['required'],
-            'numberOfDays' => ['required' , 'integer'],
+            'description' => ['required' , 'string'],
+            'numberOfDays' => ['required' , 'integer' , 'min:1'],
         ];
     }
 
-    public function validated($key = null, $default = null)
+    public function validated($key = null, $default = null): array
     {
         return [
             'is_public' => $this->isPublic,
