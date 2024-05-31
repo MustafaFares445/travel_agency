@@ -43,4 +43,9 @@ class Travel extends Model
           get: fn($value) => $value - 1
         );
     }
+
+//    public function getRouteKeyName(): string
+//    {
+//        return 'slug';
+//    }
 }
