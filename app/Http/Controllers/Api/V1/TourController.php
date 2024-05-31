@@ -7,7 +7,7 @@ use App\Http\Requests\ToursListRequest;
 use App\Http\Resources\V1\TourResource;
 use App\Models\Travel;
 
-class TourController extends Controller
+class TourController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -30,6 +30,10 @@ class TourController extends Controller
             ->orderBy('starting_date')
             ->paginate();
 
-        return TourResource::collection($tours);
+        return $this->generateJsonResponse(
+            data: TourResource::collection($tours),
+            message: trans('Travel Has been Created successfully'),
+            metaData: $this->generatePaginationMeta($tours),
+        );
     }
 }

@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\TravelResource;
 use App\Models\Travel;
+use App\Traits\ApiResponse;
+use App\Traits\GeneratePaginationMeta;
 
-class TravelController extends Controller
+class TravelController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -15,6 +17,10 @@ class TravelController extends Controller
     {
         $travels =  Travel::public()->paginate();
 
-        return TravelResource::collection($travels);
+        return $this->generateJsonResponse(
+          data: TravelResource::collection($travels),
+          message: trans('Travels Has been retrieved successfully'),
+          metaData: $this->generatePaginationMeta($travels)
+        );
     }
 }
