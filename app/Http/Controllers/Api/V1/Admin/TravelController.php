@@ -4,20 +4,11 @@ namespace App\Http\Controllers\Api\V1\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TravelRequest;
-use App\Http\Resources\TravelResource;
+use App\Http\Resources\V1\TravelResource;
 use App\Models\Travel;
-use Illuminate\Http\Request;
 
 class TravelController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      */
@@ -25,16 +16,9 @@ class TravelController extends Controller
     {
         $travel = Travel::create($request->validated());
 
-        return new TravelResource($travel);
+        return TravelResource::make($travel);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Travel $travel)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -43,14 +27,6 @@ class TravelController extends Controller
     {
         $travel->update($request->validated());
 
-        return new TravelResource($travel);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Travel $travel)
-    {
-        //
+        return TravelResource::make($travel);
     }
 }

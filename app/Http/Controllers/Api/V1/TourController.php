@@ -4,17 +4,15 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ToursListRequest;
-use App\Http\Resources\TourResource;
-use App\Models\Tour;
+use App\Http\Resources\V1\TourResource;
 use App\Models\Travel;
-use Illuminate\Http\Request;
 
 class TourController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Travel $travel , ToursListRequest $request)
+    public function index(ToursListRequest $request , Travel $travel)
     {
         $tours = $travel->tours()
             ->when($request->priceFrom , function ($query) use ($request){
@@ -33,37 +31,5 @@ class TourController extends Controller
             ->paginate();
 
         return TourResource::collection($tours);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Tour $tour)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Tour $tour)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Tour $tour)
-    {
-        //
     }
 }

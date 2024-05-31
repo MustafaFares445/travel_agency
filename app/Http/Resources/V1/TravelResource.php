@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\V1;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -19,8 +19,8 @@ class TravelResource extends JsonResource
             'name' => $this->name,
             'slug' => $this->slug,
             'description' => $this->description,
-            'number_of_days' => $this->number_of_days,
-            'number_of_nights' => $this->number_of_nights
+            'numberOfDays' => $this->number_of_days,
+            'numberOfNights' => $this->number_of_nights
         ];
     }
 }
