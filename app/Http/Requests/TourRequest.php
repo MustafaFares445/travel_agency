@@ -24,9 +24,19 @@ class TourRequest extends FormRequest
     {
         return [
             'name' => ['required' , 'string'],
-            'starting_date' => ['required' , 'date'],
-            'ending_date' => ['required' , 'date'],
-            'price' => ['required' , 'numeric'],
+            'startingDate' => ['required', 'date' , 'date_format:m/d/Y'],
+            'endingDate' => ['required' , 'date' ,'date_format:m/d/Y', 'after:starting_date'],
+            'price' => ['required' , 'numeric' , 'min:0'],
+        ];
+    }
+
+    public function validated($key = null, $default = null): array
+    {
+        return [
+            'name' => $this->name,
+            'starting_date' => $this->startingDate,
+            'ending_date' => $this->endingDate,
+            'price' => $this->price,
         ];
     }
 }
