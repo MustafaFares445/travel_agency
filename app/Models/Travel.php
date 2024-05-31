@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -28,6 +29,10 @@ class Travel extends Model
         return $this->hasMany(Tour::class);
     }
 
+    public function scopePublic(Builder $builder): void
+    {
+        $builder->where('is_public' , true);
+    }
     public function sluggable(): array
     {
         return [

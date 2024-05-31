@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\TravelResource;
+use App\Http\Resources\V1\TravelResource;
 use App\Models\Travel;
-use Illuminate\Http\Request;
 
 class TravelController extends Controller
 {
@@ -14,39 +13,8 @@ class TravelController extends Controller
      */
     public function index()
     {
-        $travels =  Travel::where('is_public' , true)->paginate();
-         return TravelResource::collection($travels);
-    }
+        $travels =  Travel::public()->paginate();
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Travel $travel)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Travel $travel)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Travel $travel)
-    {
-        //
+        return TravelResource::collection($travels);
     }
 }
