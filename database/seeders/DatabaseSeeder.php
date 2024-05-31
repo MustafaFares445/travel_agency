@@ -15,14 +15,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-
         $this->call(RoleSeeder::class);
-       Tour::factory(10)->create();
+
+        $admin = \App\Models\User::factory()->create([
+             'name' => 'admin',
+             'email' => 'admin@gmail.com',
+         ]);
+        $admin->roles()->attach(Role::where(['name' => 'admin'])->value('id'));
+
+        $admin = \App\Models\User::factory()->create([
+            'name' => 'editor',
+            'email' => 'editor@gmail.com',
+        ]);
+        $admin->roles()->attach(Role::where(['name' => 'editor'])->value('id'));
+
+        Tour::factory(10)->create();
     }
 }
