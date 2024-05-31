@@ -37,9 +37,11 @@ class Travel extends Model
         ];
     }
 
-   public function getNumberOfNightsAttribute()
+    public function numberOfNights(): Attribute
     {
-        return $this->number_of_days - 1;
+        return Attribute::make(
+          get: fn($value , $attributes) => $attributes['number_of_days'] - 1
+        );
     }
 
 //    public function getRouteKeyName(): string
