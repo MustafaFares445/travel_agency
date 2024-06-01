@@ -41,8 +41,8 @@ class AdminTourTest extends TestCase
 
         $response = $this->actingAs($user)->postJson("api/v1/admin/travels/{$travel->id}/tours", [
             'name' => 'Tour Name',
-           'starting_date' => '2024-5-31',
-            'ending_date' => '2024-6-1',
+           'startingDate' => '2024-05-31',
+            'endingDate' => '2024-06-01',
             'price' => 100,
         ]);
 

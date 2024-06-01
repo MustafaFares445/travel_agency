@@ -15,6 +15,7 @@ class Travel extends Model
     use HasFactory , Sluggable , HasUuids;
 
     protected $table = 'travels';
+    protected $dateFormat = 'Y-m-d';
 
     protected $fillable = [
       'is_public',

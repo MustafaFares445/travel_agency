@@ -25,8 +25,8 @@ class ToursListRequest extends FormRequest
         return [
             'priceForm' => ['numeric' , 'min:0'],
             'priceTo' => ['numeric' , 'min:0'],
-            'dateFrom' => ['date' , 'date_format:m/d/Y'],
-            'dateTo' => ['date' , 'date_format:m/d/Y'],
+            'dateFrom' => ['date' , 'date_format:Y-m-d'],
+            'dateTo' => ['date' , 'date_format:Y-m-d'],
             'sortBy' => Rule::in(['price']),
             'sortOrder' => Rule::in(['asc' , 'desc'])
         ];

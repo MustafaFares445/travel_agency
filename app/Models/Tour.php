@@ -12,6 +12,7 @@ class Tour extends Model
 {
     use HasFactory , HasUuids;
 
+    protected $dateFormat = 'Y-m-d';
     protected $fillable = [
         'travel_id',
         'name',
