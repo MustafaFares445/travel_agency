@@ -40,7 +40,6 @@ class TravelController extends ApiController
         return $this->generateJsonResponse(
             data: TravelResource::make($travel),
             message: trans('Travel Has been Updated successfully'),
-            statusCode: ResponseAlias::HTTP_OK,
         );
     }
 }

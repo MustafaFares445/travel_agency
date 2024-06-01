@@ -9,5 +9,5 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 
 class ApiController
 {
-    use AuthorizesRequests, ValidatesRequests , ApiResponse , GeneratePaginationMeta;
+    use AuthorizesRequests, ValidatesRequests , ApiResponse;
 }

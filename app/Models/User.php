@@ -48,4 +48,11 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Role::class);
     }
+
+    public static function findByEmail(string $email): ?User
+    {
+        return self::query()
+            ->where('email', $email)
+            ->first();
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -13,9 +14,9 @@ class LoginController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(LoginRequest $request)
+    public function __invoke(LoginRequest $request): JsonResponse
     {
-        $user = User::where('email' , $request->get('email'))->first();
+        $user = User::findByEmail($request->input('email'));
 
         if (! $user ||  Hash::check($request->get('password'), $user->get('password'))){
             return response()->json([
