@@ -21,6 +21,7 @@ class TravelController extends ApiController
         return $this->generateJsonResponse(
           data: TravelResource::collection($travels),
           message: trans('Travels Has been Retrieved successfully'),
+          metaData: $this->generatePaginationMeta($travels)
         );
     }
 }

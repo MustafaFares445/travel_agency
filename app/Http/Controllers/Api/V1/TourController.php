@@ -21,6 +21,7 @@ class TourController extends ApiController
         return $this->generateJsonResponse(
             data: TourResource::collection($tours),
             message: trans('Travel Has been Retrieved successfully'),
+            metaData: $this->generatePaginationMeta($tours)
         );
     }
 }

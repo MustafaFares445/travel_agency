@@ -2,9 +2,9 @@
 
 namespace App\Traits;
 
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+
 use Illuminate\Http\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 trait ApiResponse
 {
@@ -12,6 +12,7 @@ trait ApiResponse
     public function generateJsonResponse(
         mixed $data = null,
         ?string $message = null,
+        $metaData = null,
         int $statusCode = 200,
         bool $result = true,
     ): JsonResponse
@@ -26,8 +27,8 @@ trait ApiResponse
             $response['data'] = $data;
         }
 
-        if ($data instanceof LengthAwarePaginator) {
-            $response['meta'] = $this->generatePaginationMeta($data);
+        if ($metaData !== null) {
+            $response['meta'] = $metaData;
         }
 
         $response['status'] = $statusCode;
