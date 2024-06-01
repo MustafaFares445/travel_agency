@@ -29,6 +29,6 @@ class DatabaseSeeder extends Seeder
         ]);
         $admin->roles()->attach(Role::where(['name' => 'editor'])->value('id'));
 
-        Tour::factory(10)->create();
+        Tour::factory(50)->create();
     }
 }
